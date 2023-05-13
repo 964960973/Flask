@@ -1,0 +1,7 @@
+scrapy startproject demo  #创建scrapy项目名字为demo
+
+scrapy genspider {spider_1} {4399.com} #生成一个爬虫.formet(爬虫名称,域名)
+
+
+scrapy crawl {spider_1} #启动爬虫文件{爬虫名称}
+cd

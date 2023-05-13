@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="PYTHON_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/demo_2/get_look" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/demo_3/huashi6" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/douban/douban" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lianjia" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

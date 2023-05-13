@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+</head>
+<body>
+<h1>登录页面</h1>
+<form method="post">
+    <input type="text" name="username">账号
+    <input type="text" name="password">密码
+    <br>
+    <input type="submit" value="点击登录">
+    <br>
+    <div>
+<!--        <a href="/retrieve">找回密码</a>-->
+        <input onclick="javascript: top.location.href = '/retrieve' " type="button" value="找回密码" />
+    </div>
+    <span style="color: red">{{error}}</span>
+</form>
+</body>
+</html>

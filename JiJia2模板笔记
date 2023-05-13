@@ -1,0 +1,3 @@
+<p>{{ bianliang }}</p> # 模板中的变量
+{% if bianliang > 3 %}  # 用来执行赋值或条件或判断语句
+{# said something #} # 注释

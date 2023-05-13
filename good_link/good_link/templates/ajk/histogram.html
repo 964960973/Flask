@@ -1,0 +1,113 @@
+{% extends "index.html" %}
+{% block script %}
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Tables - SB Admin</title>
+    <link href="../static/css/styles.css" rel="stylesheet"/>
+    <link href=" https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous"/>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+    <script src=" https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="../static/js/scripts.js" crossorigin="anonymous"></script>
+    <script src="../static/js/scripts.js"></script>
+    <script src=" https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src=" https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="../static/js/datatables-demo.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src=" https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src=" https://assets.pyecharts.org/assets/echarts.min.js"></script>
+{% endblock %}
+{% block body %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <div class="card mb-4">
+                <div class="col-12">
+                    <div class="col-12 row article-list">
+                        <div class="col-sm-2 col-2 thumb d-none d-sm-block">
+                            <div class="card-header">
+                                <a href="http://127.0.0.1:5000/ajk">表格信息</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-2 thumb d-none d-sm-block">
+                            <div class="card-header">
+                                <a href="/comparison_chart?key={{key}}">点击切换房形柱状图分析</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-2 thumb d-none d-sm-block">
+                            <div class="card-header">
+                                <a href="/Pie?key={{key}}">饼图分析</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-2 thumb d-none d-sm-block">
+                            <div class="card-header">
+                                <a href="/Word_cloud_image?key={{key}}">房屋描述词云图分析</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-2 thumb d-none d-sm-block">
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>岗位信息</div>
+                        </div>
+                        <div class="col-sm-2 col-2 thumb d-none d-sm-block">
+                            <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                区域选择
+                              </button>
+                            <div class="dropdown-menu">
+                            {% for region in regions %}
+                                <a class="dropdown-item" href="/histogram?key={{region}}">{{region}}</a>
+                            {% endfor %}
+                          </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+    </main>
+    <body>
+    <div id="bar" style="width:1500px; height:600px;" class="row"></div>
+
+    <script>
+        var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});
+
+        $(
+            function () {
+                fetchData(chart);
+            }
+        );
+        function fetchData() {
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:5000/barChart?key={{key}}",
+                dataType: 'json',
+                success: function (result) {
+                    chart.setOption(result);
+                }
+            });
+        }
+    </script>
+</body>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">数据来源安居客</div>
+                <div>
+                    <a href="#">特别感谢</a>
+                    &middot;
+                    <a href="#"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}

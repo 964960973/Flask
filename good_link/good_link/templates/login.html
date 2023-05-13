@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <script  type="text/javascript" src="../static/jquery-3.6.4/dist/jquery.slim.min.js" ></script>
+        <script src="../static/js/bootstrap.bundle.min.js" ></script>
+        <link type="text/css" rel="stylesheet" href="../static/css/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="../static/css/沃芙.css" />
+    <title>登录</title>
+</head>
+
+
+
+<body>
+
+<div class="login">
+    <div class="login-triangle"></div>
+            {% block headele %}
+    <h2 class="login-header">登录系统</h2>
+            {% endblock %}
+    <!-- 传入后端的内容 -->
+    <form class="login-container" method="post">
+        <p><input type="text" name="username" placeholder="账号"></p>
+        <p><input type="password" name="password" placeholder='密码'></p>
+        {% block body %}
+        {% endblock %}
+        {% block login %}
+        <p><input type="submit" value="登录"></p>
+        {% endblock %}
+
+
+        <button type="reset" class="btn btn-default pull-left">重置</button>
+    </form>
+    {% if oser ==  "账号未注册请注册后再次尝试登录" %}
+        <span style="color: red">{{oser}}</span>
+    {% elif oser ==  "密码错误请出重新输入" %}
+        <span style="color:red;">{{oser}}</span>
+    {% elif oser == '账号不存在！！！' %}
+        <span style="color:red;">{{oser}}</span>
+    {% elif oser == "未知错误" %}
+        <span style="color:red;">{{oser}}</span>
+    {% else %}
+
+    {% endif %}
+    {% block count %}
+    <a style="color:white" href="http://127.0.0.1:5000/register">忘记密码?</a>
+    {% endblock %}
+</div>
+</body>
+</html>

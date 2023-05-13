@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+</head>
+<body>
+<h1>{{data}}</h1>
+    <h1>用户列表</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>需求链接_点击跳转</th>
+            <th>地区</th>
+            <th>职位</th>
+            <th>掌握的技术</th>
+            <th>福利待遇</th>
+            <th>企业信息</th>
+            <th>工资及其他信息</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for key in user %}
+        <tr>
+<!--            <td>{{key[0]}}</td>-->
+           <td> <input onclick="javascript: top.location.href = '{{key[0]}}' " type="button" value={{key[0]}} style="color: royalblue" /></td>
+            <td>{{key[1]}}</td>
+            <td>{{key[2]}}</td>
+            <td>{{key[3]}}</td>
+            <td>{{key[4]}}</td>
+            <td>{{key[5]}}</td>
+            <td>{{key[6]}}</td>
+            <td>
+                <a href="/edit?nid={{key[0]}}">编辑</a>
+                <a href="/delete?nid={{key[0]}}">删除</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

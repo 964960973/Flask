@@ -1,0 +1,149 @@
+{% extends "index.html" %}
+{% block script %}
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Tables - SB Admin</title>
+    <link href="../static/css/styles.css" rel="stylesheet"/>
+    <link href=" https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous"/>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+    <script src=" https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="../static/js/scripts.js" crossorigin="anonymous"></script>
+    <script src="../static/js/scripts.js"></script>
+    <script src=" https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src=" https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="../static/js/datatables-demo.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+{% endblock %}
+{% block body %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <div class="card mb-4">
+                <div class="col-12">
+                    <div class="col-12 row article-list">
+                        <div class="col-sm-1 col-1 thumb d-none d-sm-block">
+                            <div class="card-header">
+                                <a href="http://127.0.0.1:5000/recruit">表格信息</a>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-2 col-2 thumb d-none d-sm-block">
+                            <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                柱状图分析选择
+                              </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/drecruit_histogram?pos={{pos}}&region={{region}}">柱状图单城市工资分析</a>
+                                <a class="dropdown-item" href="/drecruit_histogram_average_salary?pos={{pos}}">柱状图{{pos}}薪资平均值中位数分析</a>
+                                <a class="dropdown-item" href="/drecruit_histogram_average_city?region={{region}}">柱状图{{region}}职位情况</a>
+                          </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-1 col-1 thumb d-none d-sm-block">
+                            <div class="card-header">
+                                <a href="/drecruit_Pie?pos={{pos}}&region={{region}}">饼图分析</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-1 thumb d-none d-sm-block">
+                            <div class="card-header">
+                                <a href="/Word_cloud_diagram?pos={{pos}}&region={{region}}">词云图</a>
+                            </div>
+                        </div>
+
+
+
+                      <div class="col-sm-1 col-1 thumb d-none d-sm-block">
+                            <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                岗位选择
+                              </button>
+                            <div class="dropdown-menu">
+                            {% for pos in post %}
+                                <a class="dropdown-item" href="/drecruit_histogram?pos={{pos}}&region={{region}}">{{pos}}</a>
+                            {% endfor %}
+                          </div>
+                            </div>
+                        </div>
+
+                      <div class="1 col-1 thumb d-none d-sm-block">
+                            <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                地区选择
+                              </button>
+                            <div class="dropdown-menu">
+                            {% for region in regions %}
+                                <a class="dropdown-item" href="/drecruit_histogram?pos={{pos}}&region={{region}}">{{region}}</a>
+                            {% endfor %}
+                          </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+<body style="height: 100%; margin: 0">
+<li>当前城市为{{region}}</li>
+<li>当前岗位为{{pos}}</li>
+<li>{{region}}岗位{{pos}}平均工资为{{mean}}K</li>
+<li>{{region}}岗位{{pos}}工资中位数{{median}}K</li>
+  <div id="container" style="height: 500px"></div>
+  <script type="text/javascript" src=" https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <script type="text/javascript">
+
+
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    lis = eval({{names|safe}})
+    var info = lis;
+    var app = {};
+
+    var option;
+    option = {
+  xAxis: {
+    type: 'category',
+    data: info,
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      data: {{values}},
+      type: 'bar'
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+
+            </div>
+        </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">数据来源Boss直聘</div>
+                <div>
+                    <a href="#">特别感谢</a>
+                    &middot;
+                    <a href="#"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}

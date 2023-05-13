@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+        <!--两种导入方式 直接从网站导入-->
+        <script  type="text/javascript" src="../static/jquery-3.6.4/dist/jquery.slim.min.js" ></script>
+        <script src="../static/js/bootstrap.bundle.min.js" ></script>
+        <link type="text/css" rel="stylesheet" href="../static/css/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="../static/css/沃芙.css" />
+        {% block script %}
+        {% endblock %}
+</head>
+<body>
+<div class="menu">
+    <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark menu-bar" style="color: #563d7c;">
+              <a class="navbar-brand" href="#">快捷导航</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse"
+                      data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                      aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="/ajk">租房分析</a>
+                        <a class="nav-item nav-link" href="/recruit">岗位分析</a>
+                        <a class="nav-item nav-link" href="/wyy">音乐分析</a>
+                        <a class="nav-item nav-link" href="/miao">电影分析</a>
+                        <a class="nav-item nav-link" href="/type/8-1">暂未定</a>
+                        <a class="nav-item nav-link" href="/type/8-1">暂未定</a>
+                        <a class="nav-item nav-link" href="/type/8-1">暂未定</a>
+                        <a class="nav-item nav-link" href="/type/8-1">暂未定</a>
+                </div>
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item nav-link" href="/login">登录</a>
+                    <a class="nav-item nav-link" href="/register">注册</a>
+                    <a class="nav-item nav-link" href="/type/3-1">用户中心</a>
+              </div>
+              </div>
+        </nav>
+    </div>
+</div>
+{% block body %}
+{% endblock %}
+</body>
+</html>

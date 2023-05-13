@@ -1,0 +1,42 @@
+总结
+1.flask路由
+@app.route('/index',methods=['GET','POST']，endpoint='idx')
+def index():
+    pass
+
+
+2.路由参数
+endpoint 不能重名 默认等于函数名
+methods= ['GET','POST'] 请求方式
+
+3.动态路由
+#传递int类型nid
+@app.route('/delete/<int:nid>')
+
+#传递name参数
+@app.route('/index/<name>')
+
+
+4.获取提交的数据
+from flask import request
+
+request.args #传递get类型参数
+request.form #传递post参数
+
+5.返回数据
+return render_template('模板文件.html')
+return jsonify()
+return redirect('/index')# return redirect(url_for('index'))
+
+6.模板处理.html
+#传递的参数需要{{}}
+{{x}}
+
+#html forx循环格式
+{% for item in list %}
+    {{item}}
+  {% endfor %}
+
+
+7.蓝图
+

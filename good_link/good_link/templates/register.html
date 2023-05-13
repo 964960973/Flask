@@ -1,0 +1,24 @@
+{% extends "login.html" %}
+<!--继承base父类模板-->
+{% block headele %}
+    <h2 class="login-header">注册系统</h2>
+{% endblock %}
+{% block body %}
+        {% block login %}
+        {% endblock %}
+    <p><input type="password" name="new_password" placeholder='确认密码'></p>
+    <p><input type="text" name="phone" placeholder='手机号'></p>
+    <p><input type="submit" value="注册"></p>
+    {% if prompt == "两次输入密码不一致" %}
+    {% elif prompt == "该账号已被注册尝试找回密码" %}
+        <p style="color: black;"><a href="/typ1">该账号已被注册,点击找回密码</a></p>
+    {% elif prompt == "注册失败所有字段都不能为空" %}
+        <p style="color: red">{{prompt}}</p>
+    {% elif prompt == "请正确填写手机号" %}
+        <p style="color: red">{{prompt}}</p>
+    {% endif %}
+    {% endblock %}
+
+{% block count %}
+<a style="color:#E0F2BE" href="/login">已有账号 跳转登录</a>
+{% endblock %}

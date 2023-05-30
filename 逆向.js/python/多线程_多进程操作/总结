@@ -1,0 +1,21 @@
+多进程比多线程开销大
+一个进程至少拥有一个线程
+
+计算机密集类型 使用多进程
+IO操作用多线程，例如文件读写，网络爬虫
+
+
+守护线程，默认等于Flase
+t.setDaemon(True/Flase)
+
+为True时当主线程执行完毕后程序停止，不会等待子线程
+为Flase时当主线程到.join()停止等待子线程结束
+
+
+lock_object = threading.RLock #创建一个锁对象
+
+lock_object.acquire()#申请锁
+
+lock_object.release()#释放锁
+
+pool = ThreadPoolExecutor(10)#创建一个线程池里边有10个线程
